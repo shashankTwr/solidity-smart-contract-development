@@ -13,11 +13,41 @@ contract SimpleStorage {
     // byte and bytes32 is different like uint and uint256 */
 
     // favouriteNumber gets initialized
-    uint256 favouriteNumber; // 0 ie default value of uint256
+    uint256 myFavouriteNumber; // 0 ie default value of uint256
     
+    // array of integer 0 indexed
+    uint256[] listOfFavoriteNumbers; // [0,1, 92]
+
+
+    // type of person
+    // structs are indexed as well
+    struct Person{
+        uint256 favouriteNumber;
+        string name;
+    }
+
+
+    // List of structs
+    /* Person public john = Person(555,"John");
+    Person public pat = Person({favouriteNumber: 7, name: "pat"});
+    Person public Mariah = Person({favouriteNumber: 7, name: "Mariah"});
+ */
+
+
+    // dynamic array since there's no size declared in struct array
+    // would be static if we declared it as 3
+    Person[] public listOfPeople; // []
+
+    function addPerson(string memory _name, uint256 _favouriteNumber) public {
+        // Person newPerson = Person(_favouriteNumber, _name);
+        // listOfPeople.push(newPerson)
+
+        listOfPeople.push(Person(_favouriteNumber, _name));
+    }
+
 
     function store(uint256 _favouriteNumber) public {
-        favouriteNumber = _favouriteNumber;
+        myFavouriteNumber = _favouriteNumber;
     }
 
     // view, pure
@@ -29,7 +59,7 @@ contract SimpleStorage {
 
     // returns specifies whatever datatype is returned
     function retrieve() public view returns(uint256){
-        return favouriteNumber;
+        return myFavouriteNumber;
     }
 
 

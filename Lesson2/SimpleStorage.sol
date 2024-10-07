@@ -1,6 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+
+// Warnings won't prevent you from deploying and compiling
+// Error will prevent you from deploying and compiling 
+
+// We can use the search and look for why there's errors
+
 contract SimpleStorage {
     // datatypes can be boolean, int, uint, address, bytes
 
@@ -38,11 +44,40 @@ contract SimpleStorage {
     // would be static if we declared it as 3
     Person[] public listOfPeople; // []
 
+
+      // better data structure to find list of many arrays
+    // mapping as a better data structure compaared to list 
+
+    // mapping(datatypes -> datatyp) visibility Name
+    // chelsea -> 232
+    // default mapping -> 0 for a key not added
+    mapping(string => uint256) public nameToFavouriteNumber;
+
+
+
+
+    // EVM can read and write to several places
+    // Easier edition
+    // Write and Read: Stack, memory, storage,transient storage, calldata, code, returndata
+    // Write(not read): Logs
+    // Read(not write): transaction data(&blobhash), Chain data, gas data, program counter and other 
+
+
+    // calldata, memory, storage
+    // calldata and memory means it will exist temporarily
+    // memory can be changed temporarily inside function but calldata cannot 
+    // memory can be modified like _name="cat"
+    // why no memory with default types
+    // memory is for special types and not for primitive types
+    // storage is not put for temporary variable only permanent
+
+    // any variable outside a function is a storage
     function addPerson(string memory _name, uint256 _favouriteNumber) public {
         // Person newPerson = Person(_favouriteNumber, _name);
         // listOfPeople.push(newPerson)
-
         listOfPeople.push(Person(_favouriteNumber, _name));
+        // quicker way to access number
+        nameToFavouriteNumber[_name] = _favouriteNumber;
     }
 
 
@@ -83,5 +118,8 @@ contract SimpleStorage {
     // scoping of variables 
 
 
-
+    // transaction hash 0xf4c3bd2c14b0f732f279420ddd33b4051fac400905ec255699ebe8c6b9ad28e6
+    // orange function are store function
+    // blue function are view functions
+  
 }

@@ -87,6 +87,7 @@ Blockchains are deterministic are by design so all nodes can reach consensus
 1. Variables that only set once can be made more gas efficient
 2. constant and immutables reduce gas cost
 3. Gas optimizations work once you're really good
+4. we can't change immutable and constant and contract won't compile
 
 ## Advanced solidity: Custom errors
 
